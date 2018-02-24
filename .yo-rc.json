@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Hao Yang",
+      "authorEmail": "tillohao@gmail.com",
+      "authorUrl": ""
+    }
+  }
+}
