@@ -1,7 +1,5 @@
-import './index.scss'
+import './index.scss';
 
-(() => {
-  setInterval(() => {
-    document.body.innerHTML = `Now: ${new Date().toLocaleString()}`
-  }, 1000)
-})()
+const displayTime = setInterval(() => {
+  document.body.innerHTML = `Now: ${new Date().toLocaleString()}`
+}, 1000)
