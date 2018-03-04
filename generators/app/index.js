@@ -4,6 +4,14 @@ const chalk = require('chalk');
 const yosay = require('yosay');
 
 module.exports = class extends Generator {
+  constructor(args, opts) {
+    super(args, opts);
+
+    this.argument('appname', { type: String, required: true });
+
+    this.log(this.options.appname);
+  }
+
   prompting() {
     // Have Yeoman greet the user.
     this.log(yosay(
@@ -13,7 +21,7 @@ module.exports = class extends Generator {
     const prompts = [{
       type: 'confirm',
       name: 'someAnswer',
-      message: 'Would you like to enable this option?',
+      message: 'Would you like to enable this option? I change it?',
       default: true
     }];
 
