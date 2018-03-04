@@ -1,6 +1,6 @@
 {
   "name": "generator-menthays",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "menthays' scaffold for vanilla fe project with webpack/babel/postcss/jest",
   "homepage": "",
   "author": {
