@@ -13,7 +13,10 @@ npm install -g generator-menthays
 Then generate your new project:
 
 ```bash
-yo menthays
+# create a multi-page project in VanilaJs
+yo menthays <project-name>
+# create a newly-added react project
+yo menthays <project-name> --react
 ```
 
 ## Getting To Know Yeoman
