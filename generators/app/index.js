@@ -65,15 +65,75 @@ module.exports = class extends Generator {
           ...this.props
         }
       );
-    } else {
-      this.fs.copyTpl(
-        this.templatePath('./vanilla-scaffold'),
-        this.destinationPath(`./${this.options.appname}/`),
-        {
-          ...this.props
-        }
+      this.fs.copy(
+        this.templatePath('./react-scaffold/.gitignore'),
+        this.destinationPath(`./${this.options.appname}/.gitignore`)
       );
+    } else {
+      this._writingMain()
+      this._writingConfig()
+      this._writingPkgWithProps()
     }
+  }
+
+  _writingMain() {
+    this.fs.copy(
+      this.templatePath('./vanilla-scaffold/__mocks__'),
+      this.destinationPath(`./${this.options.appname}/__mocks__`),
+    );
+    this.fs.copy(
+      this.templatePath('./vanilla-scaffold/src'),
+      this.destinationPath(`./${this.options.appname}/src`),
+    );
+    this.fs.copy(
+      this.templatePath('./vanilla-scaffold/static'),
+      this.destinationPath(`./${this.options.appname}/static`),
+    );
+    this.fs.copy(
+      this.templatePath('./vanilla-scaffold/test'),
+      this.destinationPath(`./${this.options.appname}/test`),
+    );
+  }
+
+  _writingConfig() {
+    this.fs.copy(
+      this.templatePath('./vanilla-scaffold/.babelrc'),
+      this.destinationPath(`./${this.options.appname}/.babelrc`),
+    );
+    this.fs.copy(
+      this.templatePath('./vanilla-scaffold/.editorconfig'),
+      this.destinationPath(`./${this.options.appname}/.editorconfig`),
+    );
+    this.fs.copy(
+      this.templatePath('./vanilla-scaffold/.gitignore'),
+      this.destinationPath(`./${this.options.appname}/.gitignore`),
+    );
+    this.fs.copy(
+      this.templatePath('./vanilla-scaffold/postcss.config.js'),
+      this.destinationPath(`./${this.options.appname}/postcss.config.js`),
+    );
+    this.fs.copy(
+      this.templatePath('./vanilla-scaffold/README.md'),
+      this.destinationPath(`./${this.options.appname}/README.md`),
+    );
+    this.fs.copy(
+      this.templatePath('./vanilla-scaffold/webpack.config.js'),
+      this.destinationPath(`./${this.options.appname}/webpack.config.js`),
+    );
+    this.fs.copy(
+      this.templatePath('./vanilla-scaffold/webpack.utils.js'),
+      this.destinationPath(`./${this.options.appname}/webpack.utils.js`),
+    );
+  }
+
+  _writingPkgWithProps() {
+    this.fs.copyTpl(
+      this.templatePath('./vanilla-scaffold/package.json'),
+      this.destinationPath(`./${this.options.appname}/package.json`),
+      {
+        ...this.props
+      }
+    );
   }
 
   install() {
