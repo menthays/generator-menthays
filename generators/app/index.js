@@ -58,16 +58,32 @@ module.exports = class extends Generator {
 
   writing() {
     if (this.mode === 'react') {
-      this.fs.copyTpl(
-        this.templatePath('./react-scaffold'),
-        this.destinationPath(`./${this.options.appname}/`),
-        {
-          ...this.props
-        }
+      this.fs.copy(
+        this.templatePath('./react-scaffold/public'),
+        this.destinationPath(`./${this.options.appname}/public`)
+      );
+      this.fs.copy(
+        this.templatePath('./react-scaffold/src'),
+        this.destinationPath(`./${this.options.appname}/src`)
       );
       this.fs.copy(
         this.templatePath('./react-scaffold/.gitignore'),
         this.destinationPath(`./${this.options.appname}/.gitignore`)
+      );
+      this.fs.copy(
+        this.templatePath('./react-scaffold/config-overrides.js'),
+        this.destinationPath(`./${this.options.appname}/config-overrides.js`)
+      );
+      this.fs.copy(
+        this.templatePath('./react-scaffold/README.md'),
+        this.destinationPath(`./${this.options.appname}/README.md`)
+      );
+      this.fs.copyTpl(
+        this.templatePath('./react-scaffold/package.json'),
+        this.destinationPath(`./${this.options.appname}/package.json`),
+        {
+          ...this.props
+        }
       );
     } else {
       this._writingMain();
