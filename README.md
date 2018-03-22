@@ -19,6 +19,13 @@ yo menthays <project-name>
 yo menthays <project-name> --react
 ```
 
+Using test and eslint prettier to keep code quality
+
+```bash
+npm run fix
+npm run test
+```
+
 ## Getting To Know Yeoman
 
  * Yeoman has a heart of gold.
