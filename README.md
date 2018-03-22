@@ -1,5 +1,5 @@
 # generator-menthays [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> menthays&#39; scaffold for vanilla fe project with webpack/babel/postcss/jest
+> An easy multi-page webapp boilerplate, with webpack/babel/postcss/jest
 
 ## Installation
 
@@ -15,14 +15,14 @@ Then generate your new project:
 ```bash
 # create a multi-page project in VanilaJs
 yo menthays <project-name>
-# create a newly-added react project
-yo menthays <project-name> --react
 ```
 
 Using test and eslint prettier to keep code quality
 
 ```bash
+# check and make code prettier
 npm run fix
+# run test
 npm run test
 ```
 

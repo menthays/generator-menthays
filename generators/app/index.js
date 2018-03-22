@@ -10,86 +10,40 @@ module.exports = class extends Generator {
       type: String,
       required: true
     });
-    this.option('vanilla');
-    this.option('react');
-
-    this.mode = this.options.react ? 'react' : 'vanilla';
   }
 
   prompting() {
-    // Have Yeoman greet the user.
-    if (this.mode === 'react') {
-      this.log(
-        yosay(
-          'Welcome to the sweet ' +
-            chalk.red('generator-menthays') +
-            ' generator!\n' +
-            'You have choose react scaffold. This one is based on create-react-app and integrated with sass and ant-design'
-        )
-      );
-    } else {
-      this.log(
-        yosay('Welcome to the sweet ' + chalk.red('generator-menthays') + ' generator!\n')
-      );
+    this.log(
+      yosay('Welcome to the sweet ' + chalk.red('generator-menthays') + ' generator!\n')
+    );
 
-      return this.prompt([
-        {
-          type: 'input',
-          name: 'name',
-          message: 'Your project name',
-          default: this.options.appname // Default to current folder name
-        },
-        {
-          type: 'input',
-          name: 'username',
-          message: "What's your GitHub username",
-          store: true
-        },
-        {
-          type: 'input',
-          name: 'description',
-          message: 'Some description pls'
-        }
-      ]).then(props => {
-        this.props = props;
-      });
-    }
+    return this.prompt([
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Your project name',
+        default: this.options.appname // Default to current folder name
+      },
+      {
+        type: 'input',
+        name: 'username',
+        message: "What's your GitHub username",
+        store: true
+      },
+      {
+        type: 'input',
+        name: 'description',
+        message: 'Some description pls'
+      }
+    ]).then(props => {
+      this.props = props;
+    });
   }
 
   writing() {
-    if (this.mode === 'react') {
-      this.fs.copy(
-        this.templatePath('./react-scaffold/public'),
-        this.destinationPath(`./${this.options.appname}/public`)
-      );
-      this.fs.copy(
-        this.templatePath('./react-scaffold/src'),
-        this.destinationPath(`./${this.options.appname}/src`)
-      );
-      this.fs.copy(
-        this.templatePath('./react-scaffold/.gitignore'),
-        this.destinationPath(`./${this.options.appname}/.gitignore`)
-      );
-      this.fs.copy(
-        this.templatePath('./react-scaffold/config-overrides.js'),
-        this.destinationPath(`./${this.options.appname}/config-overrides.js`)
-      );
-      this.fs.copy(
-        this.templatePath('./react-scaffold/README.md'),
-        this.destinationPath(`./${this.options.appname}/README.md`)
-      );
-      this.fs.copyTpl(
-        this.templatePath('./react-scaffold/package.json'),
-        this.destinationPath(`./${this.options.appname}/package.json`),
-        {
-          ...this.props
-        }
-      );
-    } else {
-      this._writingMain();
-      this._writingConfig();
-      this._writingPkgWithProps();
-    }
+    this._writingMain();
+    this._writingConfig();
+    this._writingPkgWithProps();
   }
 
   _writingMain() {
@@ -113,15 +67,15 @@ module.exports = class extends Generator {
 
   _writingConfig() {
     this.fs.copy(
-      this.templatePath('./vanilla-scaffold/.babelrc'),
+      this.templatePath('./vanilla-scaffold/babelrc'),
       this.destinationPath(`./${this.options.appname}/.babelrc`)
     );
     this.fs.copy(
-      this.templatePath('./vanilla-scaffold/.editorconfig'),
+      this.templatePath('./vanilla-scaffold/editorconfig'),
       this.destinationPath(`./${this.options.appname}/.editorconfig`)
     );
     this.fs.copy(
-      this.templatePath('./vanilla-scaffold/.gitignore'),
+      this.templatePath('./vanilla-scaffold/gitignore'),
       this.destinationPath(`./${this.options.appname}/.gitignore`)
     );
     this.fs.copy(
