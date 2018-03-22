@@ -2,11 +2,11 @@
   "name": "generator-menthays",
   "version": "0.2.0",
   "description": "menthays' scaffold for vanilla fe project with webpack/babel/postcss/jest",
-  "homepage": "",
+  "homepage": "https://github.com/menthays/generator-menthays",
   "author": {
     "name": "Hao Yang",
     "email": "tillohao@gmail.com",
-    "url": ""
+    "url": "https://menthays.netlify.com"
   },
   "files": [
     "generators"
@@ -41,7 +41,8 @@
     "prepublish": "nsp check",
     "pretest": "eslint .",
     "precommit": "lint-staged",
-    "test": "jest"
+    "fix": "eslint . --fix",
+    "test": "jest ./__tests__/"
   },
   "lint-staged": {
     "*.js": [
@@ -64,7 +65,7 @@
     },
     "rules": {
       "prettier/prettier": [
-        "error",
+        "warn",
         {
           "singleQuote": true,
           "printWidth": 90
