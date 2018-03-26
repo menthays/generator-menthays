@@ -1,7 +1,11 @@
 import './index.scss';
 
-export const displayTimer = callback =>
+const displayTimer = callback =>
   setInterval(() => {
     document.body.innerHTML = `Now: ${new Date().toLocaleString()}`;
     callback();
   }, 1000);
+
+displayTimer();
+
+export { displayTimer };
