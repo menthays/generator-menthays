@@ -37,7 +37,6 @@
     "prepublish": "nsp check",
     "pretest": "eslint .",
     "precommit": "lint-staged",
-    "fix": "eslint . --fix",
     "test": "jest ./__tests__/"
   },
   "lint-staged": {

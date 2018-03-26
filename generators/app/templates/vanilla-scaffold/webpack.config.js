@@ -1,11 +1,11 @@
-const path = require('path')
-const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const utils = require('./webpack.utils')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const utils = require('./webpack.utils');
 
 module.exports = {
   entry: utils.getEntry(),
@@ -25,8 +25,8 @@ module.exports = {
         include: path.resolve(__dirname, 'src'),
         loader: require.resolve('babel-loader'),
         options: {
-          cacheDirectory: true,
-        },
+          cacheDirectory: true
+        }
       },
       {
         test: [/\.(bmp|gif|jpe?g|png|svg)(\?.*)?$/],
@@ -41,7 +41,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: ('assets/media/[name].[hash:7].[ext]')
+          name: 'assets/media/[name].[hash:7].[ext]'
         }
       },
       {
@@ -49,7 +49,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: ('assets/fonts/[name].[hash:7].[ext]')
+          name: 'assets/fonts/[name].[hash:7].[ext]'
         }
       }
     ])
@@ -70,7 +70,7 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   plugins: [
-    // new webpack.ProvidePlugin({
+    // New webpack.ProvidePlugin({
     //   $: 'jquery',
     //   jQuery: 'jquery',
     //   'window.jQuery': 'jquery'
@@ -85,11 +85,11 @@ module.exports = {
       }
     ])
   ].concat(utils.getHtml())
-}
+};
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.output.publicPath = './'
-  module.exports.devtool = '#source-map'
+  module.exports.output.publicPath = './';
+  module.exports.devtool = '#source-map';
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
@@ -106,7 +106,7 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.LoaderOptionsPlugin({
       minimize: true
     }),
-    // extract css into its own file
+    // Extract css into its own file
     new ExtractTextPlugin({
       filename: 'assets/css/[name].[hash:7].css'
     }),
@@ -119,14 +119,12 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      minChunks: function (module, count) {
+      minChunks: function(module, _) {
         return (
           module.resource &&
           /\.js$/.test(module.resource) &&
-          module.resource.indexOf(
-            path.join(__dirname, './node_modules')
-          ) === 0
-        )
+          module.resource.indexOf(path.join(__dirname, './node_modules')) === 0
+        );
       }
     }),
     new webpack.optimize.CommonsChunkPlugin({
@@ -134,10 +132,10 @@ if (process.env.NODE_ENV === 'production') {
       chunks: ['vendor']
     }),
     new webpack.BannerPlugin({
-      banner: `console.log("Last modification time: ${ new Date().toLocaleString() }");`,
+      banner: `console.log("Last modification time: ${new Date().toLocaleString()}");`,
       raw: true,
       entryOnly: true,
       test: /\.(js|jsx|mjs)$/
     })
-  ])
+  ]);
 }

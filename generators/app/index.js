@@ -71,6 +71,10 @@ module.exports = class extends Generator {
       this.destinationPath(`./${this.options.appname}/.babelrc`)
     );
     this.fs.copy(
+      this.templatePath('./vanilla-scaffold/eslintrc'),
+      this.destinationPath(`./${this.options.appname}/.eslintrc`)
+    );
+    this.fs.copy(
       this.templatePath('./vanilla-scaffold/editorconfig'),
       this.destinationPath(`./${this.options.appname}/.editorconfig`)
     );

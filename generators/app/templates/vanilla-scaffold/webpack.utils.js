@@ -1,29 +1,29 @@
-const path = require('path')
-const url = require('url')
-const fs = require('fs')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path');
+const url = require('url');
+const fs = require('fs');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-exports.cssLoaders = function () {
-  prod = process.env.NODE_ENV === 'production' ? true : false
+exports.cssLoaders = function() {
+  let prod = process.env.NODE_ENV === 'production';
   const styleLoader = {
     loader: 'style-loader'
-  }
+  };
   const cssLoader = {
     loader: 'css-loader',
     options: {
       sourceMap: prod
     }
-  }
+  };
   const postcssLoader = {
     loader: 'postcss-loader',
     options: {
       sourceMap: prod
     }
-  }
-  // generate loader string to be used with extract text plugin
+  };
+  // Generate loader string to be used with extract text plugin
   function generateLoaders(loader, loaderOptions) {
-    const loaders = [cssLoader, postcssLoader]
+    const loaders = [cssLoader, postcssLoader];
 
     if (loader) {
       loaders.push({
@@ -31,7 +31,7 @@ exports.cssLoaders = function () {
         options: Object.assign({}, loaderOptions, {
           sourceMap: prod
         })
-      })
+      });
     }
 
     // Extract CSS when that option is specified
@@ -41,10 +41,9 @@ exports.cssLoaders = function () {
         use: loaders,
         publicPath: '../../',
         fallback: 'style-loader'
-      })
-    } else {
-      return [styleLoader, ...loaders]
+      });
     }
+    return [styleLoader, ...loaders];
   }
 
   return {
@@ -54,50 +53,54 @@ exports.cssLoaders = function () {
       indentedSyntax: true
     }),
     scss: generateLoaders('sass')
-  }
-}
+  };
+};
 
-// Generate loaders 
-exports.styleLoaders = function () {
-  const output = []
-  const loaders = exports.cssLoaders()
+// Generate loaders
+exports.styleLoaders = function() {
+  const output = [];
+  const loaders = exports.cssLoaders();
 
   for (const extension in loaders) {
-    const loader = loaders[extension]
-    output.push({
-      test: new RegExp('\\.' + extension + '$'),
-      use: loader
-    })
+    if (extension) {
+      const loader = loaders[extension];
+      output.push({
+        test: new RegExp('\\.' + extension + '$'),
+        use: loader
+      });
+    }
   }
-  return output
-}
+  return output;
+};
 
-exports.getPublicPath = function () {
-  let urlString = require('./package.json').homepage
-  let pathname = url.parse(urlString).pathname
+exports.getPublicPath = function() {
+  let urlString = require('./package.json').homepage;
+  let pathname = url.parse(urlString).pathname;
   if (!pathname) {
-    return '/'
+    return '/';
   }
-  else {
-    return /\/$/.test(pathname) ? pathname : pathname+'/' 
-  }
-}
+
+  return /\/$/.test(pathname) ? pathname : pathname + '/';
+};
 
 exports.getEntry = function() {
-  const ROUTES_PATH = path.resolve(__dirname,'./src/pages')
-  const routesArray = fs.readdirSync(ROUTES_PATH)
-  let result = {}
-  routesArray.map(item=>result[item]=`@/pages/${item}/${item}.js`)
-  return result
-}
+  const ROUTES_PATH = path.resolve(__dirname, './src/pages');
+  const routesArray = fs.readdirSync(ROUTES_PATH);
+  let result = {};
+  for (let item of routesArray) {
+    result[item] = `@/pages/${item}/${item}.js`;
+  }
+  return result;
+};
 
-exports.getHtml = function () {
-  return Object.keys(exports.getEntry()).map(key=>(
-    new HtmlWebpackPlugin({
-      filename: `${key}.html`,
-      template: `src/pages/${key}/${key}.html`,
-      inject: true,
-      chunks: ['manifest', 'vendor', key]
-    })
-  ))
-}
+exports.getHtml = function() {
+  return Object.keys(exports.getEntry()).map(
+    key =>
+      new HtmlWebpackPlugin({
+        filename: `${key}.html`,
+        template: `src/pages/${key}/${key}.html`,
+        inject: true,
+        chunks: ['manifest', 'vendor', key]
+      })
+  );
+};
