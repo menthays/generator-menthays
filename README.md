@@ -1,5 +1,12 @@
 # generator-menthays [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> An easy multi-page webapp boilerplate, with webpack/babel/postcss/jest
+> A simple multi-page webapp boilerplate, with modern frontend tools
+
+## Feature
+
+- webpack & babel
+- sass & postcss
+- jest
+- eslint & prettier
 
 ## Installation
 
@@ -17,11 +24,22 @@ Then generate your new project:
 yo menthays <project-name>
 ```
 
+Provide a modern develop environment
+
+```bash
+# run dev with hot reloading
+npm run dev
+# build for publish
+npm run build
+```
+
 Using test and eslint prettier to keep code quality
 
 ```bash
-# check and make code prettier
-npm run fix
+# check code style
+npm run lint
+# format code 
+npm run format
 # run test
 npm run test
 ```
