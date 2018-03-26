@@ -26,6 +26,7 @@ describe('generator-menthays:vanilla', () => {
       'postcss.config.js',
       'package.json',
       '.babelrc',
+      '.eslintrc',
       '.editorconfig',
       '.gitignore'
     ]);

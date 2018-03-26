@@ -1,17 +1,21 @@
 {
   "name": "generator-menthays",
   "version": "0.3.1",
-  "description":
-    "menthays' scaffold for vanilla fe project with webpack/babel/postcss/jest",
+  "description": "menthays' scaffold for vanilla fe project with webpack/babel/postcss/jest",
   "homepage": "https://github.com/menthays/generator-menthays",
   "author": {
     "name": "Hao Yang",
     "email": "tillohao@gmail.com",
     "url": "https://menthays.netlify.com"
   },
-  "files": ["generators"],
+  "files": [
+    "generators"
+  ],
   "main": "generators/index.js",
-  "keywords": ["", "yeoman-generator"],
+  "keywords": [
+    "",
+    "yeoman-generator"
+  ],
   "devDependencies": {
     "yeoman-test": "^1.7.0",
     "yeoman-assert": "^3.1.0",
@@ -40,11 +44,20 @@
     "test": "jest ./__tests__/"
   },
   "lint-staged": {
-    "*.js": ["eslint --fix", "git add"],
-    "*.json": ["prettier --write", "git add"]
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "eslintConfig": {
-    "extends": ["xo", "prettier"],
+    "extends": [
+      "xo",
+      "prettier"
+    ],
     "env": {
       "jest": true,
       "node": true
@@ -58,7 +71,9 @@
         }
       ]
     },
-    "plugins": ["prettier"]
+    "plugins": [
+      "prettier"
+    ]
   },
   "repository": "menthays/generator-menthays",
   "license": "MIT"
