@@ -25,6 +25,12 @@ module.exports = class extends Generator {
         default: this.options.appname // Default to current folder name
       },
       {
+        type: 'confirm',
+        name: 'formatEnabled',
+        message: "Use eslint and prettier to format your code?",
+        default: true
+      },
+      {
         type: 'input',
         name: 'username',
         message: "What's your GitHub username",
@@ -70,10 +76,12 @@ module.exports = class extends Generator {
       this.templatePath('./vanilla-scaffold/babelrc'),
       this.destinationPath(`./${this.options.appname}/.babelrc`)
     );
-    this.fs.copy(
-      this.templatePath('./vanilla-scaffold/eslintrc'),
-      this.destinationPath(`./${this.options.appname}/.eslintrc`)
-    );
+    if (this.props.formatEnabled) {
+      this.fs.copy(
+        this.templatePath('./vanilla-scaffold/eslintrc'),
+        this.destinationPath(`./${this.options.appname}/.eslintrc`)
+      );
+    }
     this.fs.copy(
       this.templatePath('./vanilla-scaffold/editorconfig'),
       this.destinationPath(`./${this.options.appname}/.editorconfig`)
