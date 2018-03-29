@@ -27,7 +27,7 @@ module.exports = class extends Generator {
       {
         type: 'confirm',
         name: 'formatEnabled',
-        message: "Use eslint and prettier to format your code?",
+        message: 'Use eslint and prettier to format your code?',
         default: true
       },
       {
@@ -110,7 +110,7 @@ module.exports = class extends Generator {
 
   _writingPkgWithProps() {
     this.fs.copyTpl(
-      this.templatePath('./vanilla-scaffold/package.json'),
+      this.templatePath('./vanilla-scaffold/packageJson'),
       this.destinationPath(`./${this.options.appname}/package.json`),
       {
         ...this.props

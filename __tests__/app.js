@@ -10,6 +10,7 @@ describe('generator-menthays:vanilla', () => {
       .withArguments(['generator-temp'])
       .withPrompts({
         name: 'test',
+        formatEnabled: true,
         username: 'Menthays <tillohao@gmail.com>',
         description: 'test with jest'
       });
