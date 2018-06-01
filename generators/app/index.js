@@ -10,6 +10,9 @@ module.exports = class extends Generator {
       type: String,
       required: true
     });
+
+    this.option('webpack4');
+    this.templateDir = this.options.webpack4 ? 'webpack4' : 'webpack3';
   }
 
   prompting() {
@@ -53,64 +56,40 @@ module.exports = class extends Generator {
   }
 
   _writingMain() {
-    this.fs.copy(
-      this.templatePath('./vanilla-scaffold/__mocks__'),
-      this.destinationPath(`./${this.options.appname}/__mocks__`)
-    );
-    this.fs.copy(
-      this.templatePath('./vanilla-scaffold/src'),
-      this.destinationPath(`./${this.options.appname}/src`)
-    );
-    this.fs.copy(
-      this.templatePath('./vanilla-scaffold/static'),
-      this.destinationPath(`./${this.options.appname}/static`)
-    );
-    this.fs.copy(
-      this.templatePath('./vanilla-scaffold/test'),
-      this.destinationPath(`./${this.options.appname}/test`)
-    );
+    let mainDir = ['__mocks__', 'src', 'static', 'test'];
+    mainDir.map(dir => {
+      return this.fs.copy(
+        this.templatePath(`./${this.templateDir}/${dir}`),
+        this.destinationPath(`./${this.options.appname}/${dir}`)
+      );
+    });
   }
 
   _writingConfig() {
-    this.fs.copy(
-      this.templatePath('./vanilla-scaffold/babelrc'),
-      this.destinationPath(`./${this.options.appname}/.babelrc`)
-    );
+    let configMap = {
+      babelrc: '.babelrc',
+      editorconfig: '.editorconfig',
+      gitignore: '.gitignore',
+      'postcss.config.js': 'postcss.config.js',
+      'README.md': 'README.md',
+      'webpack.config.js': 'webpack.config.js',
+      'webpack.utils.js': 'webpack.utils.js'
+    };
     if (this.props.formatEnabled) {
-      this.fs.copy(
-        this.templatePath('./vanilla-scaffold/eslintrc'),
-        this.destinationPath(`./${this.options.appname}/.eslintrc`)
-      );
+      configMap.eslintrc = '.eslintrc';
     }
-    this.fs.copy(
-      this.templatePath('./vanilla-scaffold/editorconfig'),
-      this.destinationPath(`./${this.options.appname}/.editorconfig`)
-    );
-    this.fs.copy(
-      this.templatePath('./vanilla-scaffold/gitignore'),
-      this.destinationPath(`./${this.options.appname}/.gitignore`)
-    );
-    this.fs.copy(
-      this.templatePath('./vanilla-scaffold/postcss.config.js'),
-      this.destinationPath(`./${this.options.appname}/postcss.config.js`)
-    );
-    this.fs.copy(
-      this.templatePath('./vanilla-scaffold/README.md'),
-      this.destinationPath(`./${this.options.appname}/README.md`)
-    );
-    this.fs.copy(
-      this.templatePath('./vanilla-scaffold/webpack.config.js'),
-      this.destinationPath(`./${this.options.appname}/webpack.config.js`)
-    );
-    this.fs.copy(
-      this.templatePath('./vanilla-scaffold/webpack.utils.js'),
-      this.destinationPath(`./${this.options.appname}/webpack.utils.js`)
-    );
+
+    Object.keys(configMap).map(key => {
+      return this.fs.copy(
+        this.templatePath(`./${this.templateDir}/${key}`),
+        this.destinationPath(`./${this.options.appname}/${configMap[key]}`)
+      );
+    });
   }
 
   _writingPkgWithProps() {
     this.fs.copyTpl(
-      this.templatePath('./vanilla-scaffold/packageJson'),
+      this.templatePath(`./${this.templateDir}/packageJson`),
       this.destinationPath(`./${this.options.appname}/package.json`),
       {
         ...this.props

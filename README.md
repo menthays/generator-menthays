@@ -22,6 +22,8 @@ Then generate your new project:
 ```bash
 # create a multi-page project in VanilaJs
 yo menthays <project-name>
+# create a multi-page project in VanilaJs with webpack4
+yo menthays <project-name> ---webpack4
 ```
 
 Provide a modern develop environment
