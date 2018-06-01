@@ -1,25 +1,18 @@
 const path = require('path');
 const url = require('url');
 const fs = require('fs');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 exports.cssLoaders = function() {
-  let prod = process.env.NODE_ENV === 'production';
   const styleLoader = {
     loader: 'style-loader'
   };
   const cssLoader = {
-    loader: 'css-loader',
-    options: {
-      sourceMap: prod
-    }
+    loader: 'css-loader'
   };
   const postcssLoader = {
-    loader: 'postcss-loader',
-    options: {
-      sourceMap: prod
-    }
+    loader: 'postcss-loader'
   };
   // Generate loader string to be used with extract text plugin
   function generateLoaders(loader, loaderOptions) {
@@ -28,22 +21,16 @@ exports.cssLoaders = function() {
     if (loader) {
       loaders.push({
         loader: loader + '-loader',
-        options: Object.assign({}, loaderOptions, {
-          sourceMap: prod
-        })
+        options: loaderOptions
       });
     }
 
     // Extract CSS when that option is specified
     // (which is the case during production build)
-    if (prod) {
-      return ExtractTextPlugin.extract({
-        use: loaders,
-        publicPath: '../../',
-        fallback: 'style-loader'
-      });
-    }
-    return [styleLoader, ...loaders];
+    return [
+      process.env.NODE_ENV === 'production' ? MiniCssExtractPlugin.loader : styleLoader,
+      ...loaders
+    ];
   }
 
   return {
@@ -100,7 +87,7 @@ exports.getHtml = function() {
         filename: `${key}.html`,
         template: `src/pages/${key}/${key}.html`,
         inject: true,
-        chunks: ['manifest', 'vendor', key]
+        chunks: [key]
       })
   );
 };
