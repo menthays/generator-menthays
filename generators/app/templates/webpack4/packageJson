@@ -12,7 +12,7 @@
     "test": "jest ./test",
     <% if (formatEnabled) { %>"lint": "eslint . --ignore-path .gitignore",<% } %>
     <% if (formatEnabled) { %>"format": "eslint . --fix --ignore-path .gitignore",<% } %>
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open",
+    "dev": "cross-env NODE_ENV=development webpack-serve",
     "start": "npm run dev",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
