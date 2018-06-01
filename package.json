@@ -1,6 +1,6 @@
 {
   "name": "generator-menthays",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "description": "A simple multi-page webapp boilerplate, with modern frontend tools",
   "homepage": "https://github.com/menthays/generator-menthays",
   "author": {
@@ -24,14 +24,14 @@
     "husky": "^0.14.3",
     "jest": "^22.4.3",
     "lint-staged": "^4.2.1",
-    "nsp": "^2.6.3",
+    "nsp": "^3.2.1",
     "prettier": "^1.12.1",
     "yeoman-assert": "^3.1.1",
-    "yeoman-test": "^1.7.0"
+    "yeoman-test": "^1.7.2"
   },
   "dependencies": {
-    "yeoman-generator": "^2.0.1",
     "chalk": "^2.1.0",
+    "yeoman-generator": "^2.0.5",
     "yosay": "^2.0.1"
   },
   "jest": {
@@ -39,7 +39,7 @@
   },
   "scripts": {
     "prepublish": "nsp check",
-    "pretest": "eslint .",
+    "pretest": "eslint . --fix",
     "precommit": "lint-staged",
     "test": "jest ./__tests__/"
   },

@@ -1,0 +1,63 @@
+{
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less|scss|sass|styl)$": "<rootDir>/__mocks__/styleMock.js"
+    }
+  },
+  "scripts": {
+    "test": "jest ./test",
+    <% if (formatEnabled) { %>"lint": "eslint . --ignore-path .gitignore",<% } %>
+    <% if (formatEnabled) { %>"format": "eslint . --fix --ignore-path .gitignore",<% } %>
+    "dev": "cross-env NODE_ENV=development webpack-serve",
+    "start": "npm run dev",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "devDependencies": { 
+    "autoprefixer": "^7.2.6",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^23.0.1",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.18",
+    "copy-webpack-plugin": "^4.4.1",
+    "cross-env": "^5.1.3",
+    "css-loader": "^0.28.11",
+    "cssnano": "^3.10.0",
+    <% if (formatEnabled) { %>"eslint": "^4.19.1",<% } %>
+    <% if (formatEnabled) { %>"eslint-config-prettier": "^2.9.0",<% } %>
+    <% if (formatEnabled) { %>"eslint-config-xo": "^0.20.1",<% } %>
+    <% if (formatEnabled) { %>"eslint-plugin-prettier": "^2.6.0",<% } %>
+    "file-loader": "^1.1.11",
+    "html-loader": "^0.5.1",
+    "html-webpack-plugin": "^3.1.0",
+    "jest": "^22.4.3",
+    "mini-css-extract-plugin": "^0.4.0",
+    "node-sass": "^4.9.0",
+    "optimize-css-assets-webpack-plugin": "^4.0.0",
+    "postcss-import": "^11.1.0",
+    "postcss-loader": "^2.1.3",
+    <% if (formatEnabled) { %>"prettier": "^1.11.1",<% } %>
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.1",
+    "uglifyjs-webpack-plugin": "^1.2.4",
+    "url-loader": "^0.6.2",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^2.1.4",
+    "webpack-serve": "^0.3.1"
+  },
+  "name": "<%= name %>",
+  "author": {
+    "name": "<%= username %>"
+  },
+  "description": "<%= description %>"
+}
