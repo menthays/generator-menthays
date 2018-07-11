@@ -1,21 +1,17 @@
 {
   "name": "generator-menthays",
-  "version": "0.5.0",
-  "description": "A simple multi-page webapp boilerplate, with modern frontend tools",
+  "version": "0.6.0",
+  "description":
+    "A simple multi-page webapp boilerplate, with modern frontend tools",
   "homepage": "https://github.com/menthays/generator-menthays",
   "author": {
     "name": "Hao Yang",
     "email": "tillohao@gmail.com",
     "url": "https://menthays.netlify.com"
   },
-  "files": [
-    "generators"
-  ],
+  "files": ["generators"],
   "main": "generators/index.js",
-  "keywords": [
-    "",
-    "yeoman-generator"
-  ],
+  "keywords": ["", "yeoman-generator"],
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.4.0",
@@ -44,20 +40,11 @@
     "test": "jest ./__tests__/"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.json": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.js": ["eslint --fix", "git add"],
+    "*.json": ["prettier --write", "git add"]
   },
   "eslintConfig": {
-    "extends": [
-      "xo",
-      "prettier"
-    ],
+    "extends": ["xo", "prettier"],
     "env": {
       "jest": true,
       "node": true
@@ -71,9 +58,7 @@
         }
       ]
     },
-    "plugins": [
-      "prettier"
-    ]
+    "plugins": ["prettier"]
   },
   "repository": "menthays/generator-menthays",
   "license": "MIT"

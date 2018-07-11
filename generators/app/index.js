@@ -94,6 +94,5 @@ module.exports = class extends Generator {
       bower: false,
       yarn: false
     });
-    process.chdir(process.cwd() + '/' + this.options.appname);
   }
 };
