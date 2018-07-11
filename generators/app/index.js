@@ -10,7 +10,7 @@ module.exports = class extends Generator {
       type: String,
       required: true
     });
-    this.templateDir = 'mpa';
+    this.templateDir = 'webpack4';
   }
 
   prompting() {
