@@ -22,8 +22,6 @@ Then generate your new project:
 ```bash
 # create a multi-page project in VanilaJs
 yo menthays <project-name>
-# create a multi-page project in VanilaJs with webpack4
-yo menthays <project-name> ---webpack4
 ```
 
 Provide a modern develop environment
@@ -40,11 +38,10 @@ Using test and eslint prettier to keep code quality
 ```bash
 # check code style
 npm run lint
-# format code 
-npm run format
-# run test
+# run unit test
 npm run test
 ```
+And lint-staged will always help you to format code when you do commit
 
 ## Getting To Know Yeoman
 
