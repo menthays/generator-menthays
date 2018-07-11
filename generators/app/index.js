@@ -10,9 +10,7 @@ module.exports = class extends Generator {
       type: String,
       required: true
     });
-
-    this.option('webpack4');
-    this.templateDir = this.options.webpack4 ? 'webpack4' : 'webpack3';
+    this.templateDir = 'mpa';
   }
 
   prompting() {
@@ -26,12 +24,6 @@ module.exports = class extends Generator {
         name: 'name',
         message: 'Your project name',
         default: this.options.appname // Default to current folder name
-      },
-      {
-        type: 'confirm',
-        name: 'formatEnabled',
-        message: 'Use eslint and prettier to format your code?',
-        default: true
       },
       {
         type: 'input',
@@ -69,15 +61,13 @@ module.exports = class extends Generator {
     let configMap = {
       babelrc: '.babelrc',
       editorconfig: '.editorconfig',
+      eslintrc: '.eslintrc',
       gitignore: '.gitignore',
       'postcss.config.js': 'postcss.config.js',
       'README.md': 'README.md',
       'webpack.config.js': 'webpack.config.js',
       'webpack.utils.js': 'webpack.utils.js'
     };
-    if (this.props.formatEnabled) {
-      configMap.eslintrc = '.eslintrc';
-    }
 
     Object.keys(configMap).map(key => {
       return this.fs.copy(
@@ -104,5 +94,6 @@ module.exports = class extends Generator {
       bower: false,
       yarn: false
     });
+    process.chdir(process.cwd() + '/' + this.options.appname);
   }
 };
