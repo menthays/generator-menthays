@@ -16,9 +16,6 @@
     "",
     "yeoman-generator"
   ],
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  },
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.4.0",
