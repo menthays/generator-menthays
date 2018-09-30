@@ -14,6 +14,12 @@ exports.cssLoaders = function() {
   const postcssLoader = {
     loader: 'postcss-loader'
   };
+  const extractLoader = {
+    loader: MiniCssExtractPlugin.loader,
+    options: {
+      publicPath: '../../'
+    }
+  }
   // Generate loader string to be used with extract text plugin
   function generateLoaders(loader, loaderOptions) {
     const loaders = [cssLoader, postcssLoader];
@@ -28,7 +34,7 @@ exports.cssLoaders = function() {
     // Extract CSS when that option is specified
     // (which is the case during production build)
     return [
-      process.env.NODE_ENV === 'production' ? MiniCssExtractPlugin.loader : styleLoader,
+      process.env.NODE_ENV === 'production' ? extractLoader : styleLoader,
       ...loaders
     ];
   }
@@ -87,7 +93,7 @@ exports.getHtml = function() {
         filename: `${key}.html`,
         template: `src/pages/${key}/${key}.html`,
         inject: true,
-        chunks: [key]
+        chunks: ['vendor', key],
       })
   );
 };
