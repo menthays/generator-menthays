@@ -1,6 +1,6 @@
 {
   "name": "generator-menthays",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "A simple multi-page webapp boilerplate, with modern frontend tools",
   "homepage": "https://github.com/menthays/generator-menthays",
   "author": {
@@ -16,6 +16,9 @@
     "",
     "yeoman-generator"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.4.0",

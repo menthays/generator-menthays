@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const utils = require('./webpack.utils');
 
@@ -47,7 +48,7 @@ module.exports = {
           {
             loader: require.resolve('url-loader'),
             options: {
-              limit: 10000,
+              limit: 8000,
               name: 'assets/img/[name].[hash:7].[ext]'
             }
           }
@@ -59,7 +60,7 @@ module.exports = {
           {
             loader: require.resolve('url-loader'),
             options: {
-              limit: 10000,
+              limit: 8000,
               name: 'assets/media/[name].[hash:7].[ext]'
             }
           }
@@ -71,7 +72,7 @@ module.exports = {
           {
             loader: require.resolve('url-loader'),
             options: {
-              limit: 10000,
+              limit: 8000,
               name: 'assets/fonts/[name].[hash:7].[ext]'
             }
           }
@@ -81,7 +82,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '@': path.join(__dirname, './src')
+      '@': path.join(__dirname, './src'),
+      // 'jquery': 'jquery/dist/jquery.slim.js'
     },
     extensions: ['*', '.js', '.json']
   },
@@ -92,7 +94,8 @@ module.exports = {
         to: 'assets/',
         ignore: ['.*']
       }
-    ])
+    ]),
+    // new BundleAnalyzerPlugin()
   ].concat(utils.getHtml())
 };
 
@@ -100,11 +103,13 @@ if (process.env.NODE_ENV === 'production') {
   module.exports.output.publicPath = './';
   module.exports.optimization = {
     splitChunks: {
-      chunks: 'all',
-      name: 'common'
-    },
-    runtimeChunk: {
-      name: 'runtime'
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          chunks: 'all',
+          name: 'vendor'
+        }
+      }
     },
     minimizer: [
       new UglifyJsPlugin({

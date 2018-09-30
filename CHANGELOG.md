@@ -1,3 +1,8 @@
+## 0.6.2 (Sep 30, 2018)
+
+#### :bug: Bug fix
+* Fixed config for HtmlWebpackPlugin which will cause ignoring extracted css file.
+
 ## 0.6.0 (July 12, 2018)
 
 #### :house: Internal
