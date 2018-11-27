@@ -1,3 +1,8 @@
+## 0.6.3 (Nov 27, 2018)
+
+#### :house: Internal
+* Do npm audit
+
 ## 0.6.2 (Sep 30, 2018)
 
 #### :bug: Bug fix
